@@ -33,7 +33,8 @@ return Application::configure(basePath: dirname(__DIR__))
                 $e instanceof InvalidArgumentException => JsonResponse::HTTP_BAD_REQUEST,       // 400
                 $e instanceof AuthenticationException => JsonResponse::HTTP_UNAUTHORIZED,       // 401
                 $e instanceof ModelNotFoundException => JsonResponse::HTTP_NOT_FOUND,           // 404
-                default => JsonResponse::HTTP_INTERNAL_SERVER_ERROR,           // 500
+                $e instanceof DomainException => JsonResponse::HTTP_CONFLICT,                   // 409
+                default => JsonResponse::HTTP_INTERNAL_SERVER_ERROR,                            // 500
             };
 
             logger()->error($e->getMessage(),$e->getTrace());

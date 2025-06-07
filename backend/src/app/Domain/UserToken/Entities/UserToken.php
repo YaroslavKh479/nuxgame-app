@@ -23,4 +23,11 @@ final class UserToken
     )
     {
     }
+
+
+    public function isExpired(): bool
+    {
+        return $this->expiresAt < Carbon::now();
+    }
+
 }

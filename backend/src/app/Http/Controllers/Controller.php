@@ -12,8 +12,7 @@ abstract class Controller
 
     protected function response(\Closure $closure): JsonResponse
     {
-        $result = $closure();
-        return $result->toResponse();
+        return $closure()->toResponse();
     }
 
 

@@ -31,10 +31,7 @@ class RegistrationCommandHandler extends CommandHandler
     {
 
         if ($this->userRepository->existsByPhone($command->getPhoneNumber())) {
-            return new ErrorResponse(
-                message: __('User already registered.'),
-                statusCode: Response::HTTP_UNPROCESSABLE_ENTITY
-            );
+            throw new \DomainException(__('User already registered.'));
         }
 
         $userToken = DB::transaction(function () use ($command) {
