@@ -32,6 +32,9 @@ x-backend-variables: &backend-variables
   X_FILESYSTEM_DISK: "public"
   X_QUEUE_CONNECTION: "database"
 
+  X_PHONE_NUMBER_CODE: "+380"
+  X_PHONE_NUMBER_LENGTH: "9"
+
 services:
 
   app:

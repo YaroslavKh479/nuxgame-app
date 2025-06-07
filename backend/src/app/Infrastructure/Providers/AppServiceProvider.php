@@ -1,7 +1,10 @@
 <?php
 
-namespace App\Providers;
+namespace App\Infrastructure\Providers;
 
+
+use App\Domain\User\Contracts\Storage\UserStorageInterface;
+use App\Infrastructure\Storage\UserStorage;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -11,7 +14,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        $this->app->bind(UserStorageInterface::class, UserStorage::class);
     }
 
     /**
@@ -19,6 +22,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+       //
     }
 }
