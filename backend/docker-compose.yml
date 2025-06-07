@@ -1,0 +1,77 @@
+x-backend-variables: &backend-variables
+  X_APP_NAME: "NuxGameApi"
+  X_APP_ENV: "local"
+  X_APP_KEY: ""
+  X_APP_DEBUG: "true"
+  X_APP_TIMEZONE: "UTC"
+  X_APP_URL: "http://127.0.0.1:8801"
+  X_APP_FRONTEND_URL: "http://localhost:5175"
+
+  X_APP_LOCALE: "en"
+  X_APP_FALLBACK_LOCALE: "en"
+  X_APP_FAKER_LOCALE: "en_US"
+
+  X_APP_MAINTENANCE_DRIVER: "file"
+
+  X_BCRYPT_ROUNDS: "12"
+
+  X_CACHE_STORE: "database"
+
+  X_LOG_CHANNEL: "stack"
+  X_LOG_STACK: "single"
+  X_LOG_DEPRECATIONS_CHANNEL: "null"
+  X_LOG_LEVEL: "debug"
+
+  X_DB_CONNECTION: "mysql"
+  X_DB_HOST: "db"
+  X_DB_PORT: "3306"
+  X_DB_DATABASE: "app"
+  X_DB_USERNAME: "root"
+  X_DB_PASSWORD: "root"
+
+  X_FILESYSTEM_DISK: "public"
+  X_QUEUE_CONNECTION: "database"
+
+services:
+
+  app:
+    container_name: nuxgame_api_app
+    depends_on:
+      - db
+    links:
+      - db
+    environment: *backend-variables
+    image: nuxgame_api_image
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    volumes:
+      - ./src:/var/www
+    ports:
+      - '8801:80'
+
+  db:
+    container_name: nuxgame_api_db
+    image: mariadb:10.6
+    restart: unless-stopped
+    environment:
+      MARIADB_ROOT_PASSWORD: root
+      MARIADB_DATABASE: app
+      MARIADB_USER: root
+      MARIADB_PASSWORD: root
+    volumes:
+      - db_data:/var/lib/mysql
+    ports:
+      - "3806:3306"
+
+  adminer:
+    container_name: nuxgame_api_adminer
+    image: adminer
+    restart: unless-stopped
+    ports:
+      - "8802:8080"
+
+volumes:
+  db_data:
+  src:
