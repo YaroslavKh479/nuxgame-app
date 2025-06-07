@@ -13,11 +13,7 @@ abstract class Controller
     protected function response(\Closure $closure): JsonResponse
     {
         $result = $closure();
-        if ($result->isSuccess()) {
-            return (new SuccessResponse($result->getData(), $result->getCode() ?? 200))->toResponse();
-        }
-
-        return (new ErrorResponse($result->getErrors(), $result->getCode() ?? 500))->toResponse();
+        return $result->toResponse();
     }
 
 

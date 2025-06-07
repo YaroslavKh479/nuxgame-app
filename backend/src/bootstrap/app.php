@@ -24,15 +24,19 @@ return Application::configure(basePath: dirname(__DIR__))
     ->withExceptions(function (Exceptions $exceptions) {
 
 
-        $exceptions->renderable(function (\Exception $e, $request) {
+        $exceptions->renderable(function (\Exception $e) {
+
 
             $code = match (true) {
+                $e instanceof ValidationException => JsonResponse::HTTP_UNPROCESSABLE_ENTITY,   // 422
                 $e instanceof InvalidArgumentException => JsonResponse::HTTP_BAD_REQUEST,       // 400
                 $e instanceof AuthenticationException => JsonResponse::HTTP_UNAUTHORIZED,       // 401
                 $e instanceof ModelNotFoundException => JsonResponse::HTTP_NOT_FOUND,           // 404
-                $e instanceof ValidationException => JsonResponse::HTTP_UNPROCESSABLE_ENTITY,   // 422
+
                 default => $e->getCode() ?: JsonResponse::HTTP_INTERNAL_SERVER_ERROR,           // 500
             };
+
+            logger()->error($e->getMessage(),$e->getTrace());
 
             return response()->json([
                 'success'   => false,

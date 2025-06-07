@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Domain\UserToken\Entities\ValueObjects;
+namespace App\Domain\UserToken\ValueObjects;
 use Illuminate\Support\Str;
+
 final class Token
 {
     private string $value;

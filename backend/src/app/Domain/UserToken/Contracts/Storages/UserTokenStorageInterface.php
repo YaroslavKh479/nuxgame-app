@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Domain\UserToken\Contracts\Storage;
+namespace App\Domain\UserToken\Contracts\Storages;
 
 use App\Domain\UserToken\Entities\UserToken\UserToken;
 

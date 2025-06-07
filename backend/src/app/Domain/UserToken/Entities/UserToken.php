@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Domain\UserToken\Entities\UserToken;
+namespace App\Domain\UserToken\Entities;
 
 use App\Domain\User\Entities\User;
-use App\Domain\UserToken\Entities\ValueObjects\Token;
+use App\Domain\UserToken\ValueObjects\Token;
+
 
 final class UserToken
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Infrastructure\Storage;
+namespace app\Infrastructure\Storages\User;
 
 use App\Domain\User\Contracts\Storage\UserStorageInterface;
 use App\Domain\User\Entities\User;
