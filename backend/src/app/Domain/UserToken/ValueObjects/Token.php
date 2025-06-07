@@ -20,7 +20,7 @@ final class Token
         return new self(Str::random(32));
     }
 
-    public function value(): string
+    public function getValue(): string
     {
         return $this->value;
     }

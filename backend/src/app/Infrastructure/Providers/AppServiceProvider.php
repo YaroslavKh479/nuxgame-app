@@ -3,11 +3,13 @@
 namespace App\Infrastructure\Providers;
 
 
-use App\Domain\User\Contracts\Repository\UserRepositoryInterface;
-use App\Domain\User\Contracts\Storage\UserStorageInterface;
-use App\Domain\UserToken\Contracts\Storage\UserTokenStorageInterface;
-use app\Infrastructure\Storage\User\UserStorage;
-use app\Infrastructure\Storage\User\UserTokenStorage;
+
+use App\Domain\User\Contracts\Repositories\UserRepositoryInterface;
+use App\Domain\User\Contracts\Storages\UserStorageInterface;
+use App\Domain\UserToken\Contracts\Storages\UserTokenStorageInterface;
+use App\Infrastructure\Repositories\User\UserRepository;
+use App\Infrastructure\Storages\User\UserStorage;
+use App\Infrastructure\Storages\User\UserTokenStorage;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -18,7 +20,7 @@ class AppServiceProvider extends ServiceProvider
     public function register(): void
     {
         // Repositories
-        $this->app->bind(UserRepositoryInterface::class, UserRepositoryInterface::class);
+        $this->app->bind(UserRepositoryInterface::class, UserRepository::class);
 
         // Storages
         $this->app->bind(UserStorageInterface::class, UserStorage::class);

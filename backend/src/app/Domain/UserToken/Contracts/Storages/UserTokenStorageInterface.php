@@ -2,7 +2,8 @@
 
 namespace App\Domain\UserToken\Contracts\Storages;
 
-use App\Domain\UserToken\Entities\UserToken\UserToken;
+
+use App\Domain\UserToken\Entities\UserToken;
 
 interface UserTokenStorageInterface
 {

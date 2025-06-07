@@ -2,12 +2,9 @@
 
 namespace app\Http\Controllers\Auth;
 
-
-
-use App\Application\Command\Registration\RegistrationCommand;
-use App\Http\Requests\Auth\RegistrationRequest;
+use App\Application\Commands\Registration\RegistrationCommand;
 use App\Http\Controllers\Controller;
-
+use App\Http\Requests\Auth\RegistrationRequest;
 use Illuminate\Http\JsonResponse;
 
 class AuthController extends Controller

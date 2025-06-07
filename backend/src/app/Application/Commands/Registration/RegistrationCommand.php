@@ -1,13 +1,14 @@
 <?php
 
-namespace App\Application\Command\Registration;
+namespace App\Application\Commands\Registration;
+
 use LaravelMediator\Abstracts\Buses\Command;
 
 class RegistrationCommand extends Command
 {
     public function __construct(
         private readonly string $name,
-        private readonly string $phoneNumber,
+        private readonly string $phone_number,
     )
     {
     }
@@ -19,7 +20,7 @@ class RegistrationCommand extends Command
 
     public function getPhoneNumber(): string
     {
-        return $this->phoneNumber;
+        return $this->phone_number;
     }
 
 }

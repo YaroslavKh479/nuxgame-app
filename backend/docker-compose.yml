@@ -34,6 +34,7 @@ x-backend-variables: &backend-variables
 
   X_PHONE_NUMBER_CODE: "+380"
   X_PHONE_NUMBER_LENGTH: "9"
+  X_TOKEN_EXPIRES_DAYS: "7"
 
 services:
 

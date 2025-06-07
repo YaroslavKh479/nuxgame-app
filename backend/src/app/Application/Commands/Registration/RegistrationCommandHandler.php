@@ -1,16 +1,18 @@
 <?php
 
-namespace App\Application\Command\Registration;
+namespace App\Application\Commands\Registration;
 
-use app\Application\Responses\ErrorResponse;
-use app\Application\Responses\SuccessResponse;
-use App\Domain\User\Entities\User;
-use App\Domain\User\ValueObjects\PhoneNumber;
+use App\Application\Responses\ErrorResponse;
+use App\Application\Responses\SuccessResponse;
 use App\Domain\User\Contracts\Repositories\UserRepositoryInterface;
 use App\Domain\User\Contracts\Storages\UserStorageInterface;
+use App\Domain\User\Entities\User;
+use App\Domain\User\ValueObjects\PhoneNumber;
 use App\Domain\UserToken\Contracts\Storages\UserTokenStorageInterface;
-use App\Domain\UserToken\Entities\UserToken\UserToken;
-use App\Domain\UserToken\Entities\ValueObjects\Token;
+use App\Domain\UserToken\Entities\UserToken;
+use App\Domain\UserToken\ValueObjects\Token;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 use LaravelMediator\Abstracts\Buses\Handlers\CommandHandler;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -35,20 +37,25 @@ class RegistrationCommandHandler extends CommandHandler
             );
         }
 
-        $user = $this->userStorage->save(new User(
-            $command->getName(),
-            new PhoneNumber($command->getPhoneNumber())
-        ));
+        /** @var UserToken $userToken */
+        $userToken = DB::transaction(function () use ($command) {
 
-        $userToken = $this->userTokenStorage->save(new UserToken(
-            $user,
-            Token::generate()
-        ));
+            $user = $this->userStorage->save(new User(
+                $command->getName(),
+                new PhoneNumber($command->getPhoneNumber())
+            ));
+
+            return $this->userTokenStorage->save(new UserToken(
+                $user,
+                Token::generate(),
+                Carbon::now()->addDays((int)config('custom.token_expires_days'))
+            ));
+        });
 
         return new SuccessResponse([
-            'id'    => $user->id,
-            'name'  => $user->name,
-            'token' => $userToken->token,
+            'id'    => $userToken->user->id,
+            'name'  => $userToken->user->name,
+            'token' => $userToken->token->getValue(),
         ]);
     }
 }

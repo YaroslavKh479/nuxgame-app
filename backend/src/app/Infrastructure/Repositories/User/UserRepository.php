@@ -2,8 +2,9 @@
 
 namespace App\Infrastructure\Repositories\User;
 
-use App\Domain\User\Contracts\Repository\UserRepositoryInterface;
-use app\Infrastructure\Persistence\Models\User as EloquentUser;
+
+use App\Domain\User\Contracts\Repositories\UserRepositoryInterface;
+use App\Infrastructure\Persistence\Models\User as EloquentUser;
 
 class UserRepository implements UserRepositoryInterface
 {
