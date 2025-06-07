@@ -2,8 +2,7 @@
 
 namespace App\Application\Commands\Registration;
 
-use App\Application\Responses\ErrorResponse;
-use App\Application\Responses\SuccessResponse;
+use App\Application\Responses\Success;
 use App\Domain\User\Contracts\Repositories\UserRepositoryInterface;
 use App\Domain\User\Contracts\Storages\UserStorageInterface;
 use App\Domain\User\Entities\User;
@@ -14,7 +13,6 @@ use App\Domain\UserToken\ValueObjects\Token;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use LaravelMediator\Abstracts\Buses\Handlers\CommandHandler;
-use Symfony\Component\HttpFoundation\Response;
 
 class RegistrationCommandHandler extends CommandHandler
 {
@@ -27,7 +25,7 @@ class RegistrationCommandHandler extends CommandHandler
     {
     }
 
-    public function handle(RegistrationCommand $command): SuccessResponse | ErrorResponse
+    public function handle(RegistrationCommand $command): Success | \DomainException
     {
 
         if ($this->userRepository->existsByPhone($command->getPhoneNumber())) {
@@ -48,10 +46,6 @@ class RegistrationCommandHandler extends CommandHandler
             ));
         });
 
-        return new SuccessResponse([
-            'id'    => $userToken->user->id,
-            'name'  => $userToken->user->name,
-            'token' => $userToken->token->getValue(),
-        ]);
+        return new Success($userToken->token->getValue());
     }
 }

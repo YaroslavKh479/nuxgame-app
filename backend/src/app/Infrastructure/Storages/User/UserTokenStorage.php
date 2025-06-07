@@ -23,4 +23,8 @@ class UserTokenStorage implements UserTokenStorageInterface
         return new UserToken($userToken->user, new Token($eloquent->token), $userToken->expiresAt, $eloquent->id);
     }
 
+    public function delete(int $id): bool
+    {
+        return EloquentUserToken::where('id',$id)->delete();
+    }
 }

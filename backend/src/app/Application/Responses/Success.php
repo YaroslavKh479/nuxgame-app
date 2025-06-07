@@ -4,7 +4,7 @@ namespace app\Application\Responses;
 
 use Illuminate\Http\JsonResponse;
 
-class SuccessResponse
+class Success
 {
     public function __construct(private $data, private readonly int $statusCode = 200){}
 

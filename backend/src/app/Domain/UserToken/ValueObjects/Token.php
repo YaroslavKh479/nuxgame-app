@@ -9,7 +9,7 @@ final class Token
 
     public function __construct(string $value)
     {
-        if (strlen($value) !== 32) {
+        if (strlen($value) !== 64) {
             throw new \InvalidArgumentException('Invalid token length');
         }
         $this->value = $value;
@@ -17,7 +17,7 @@ final class Token
 
     public static function generate(): self
     {
-        return new self(Str::random(32));
+        return new self(Str::random(64));
     }
 
     public function getValue(): string

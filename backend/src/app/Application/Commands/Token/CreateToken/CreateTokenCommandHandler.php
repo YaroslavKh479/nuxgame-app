@@ -2,8 +2,7 @@
 
 namespace App\Application\Commands\Token\CreateToken;
 
-use App\Application\Responses\ErrorResponse;
-use App\Application\Responses\SuccessResponse;
+use App\Application\Responses\Success;
 use App\Application\Services\TokenService;
 use App\Domain\UserToken\Contracts\Storages\UserTokenStorageInterface;
 use App\Domain\UserToken\Entities\UserToken;
@@ -21,7 +20,7 @@ class CreateTokenCommandHandler extends CommandHandler
     {
     }
 
-    public function handle(CreateTokenCommand $command): SuccessResponse | ErrorResponse
+    public function handle(CreateTokenCommand $command): Success | \DomainException
     {
 
         $userToken = $this->tokenService->getValidTokenOrFail($command->getToken());
@@ -32,10 +31,6 @@ class CreateTokenCommandHandler extends CommandHandler
             Carbon::now()->addDays((int)config('custom.token_expires_days'))
         ));
 
-        return new SuccessResponse([
-            'id'    => $userToken->user->id,
-            'name'  => $userToken->user->name,
-            'token' => $userToken->token->getValue(),
-        ]);
+        return new Success($userToken->token->getValue());
     }
 }
