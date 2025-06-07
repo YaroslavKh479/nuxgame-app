@@ -9,15 +9,6 @@ use App\Infrastructure\Persistence\Models\User as EloquentUser;
 
 class UserStorage implements UserStorageInterface
 {
-    public function create(string $name, PhoneNumber $phoneNumber): User
-    {
-        $eloquent = new EloquentUser();
-        $eloquent->username = $name;
-        $eloquent->phone = $phoneNumber->value();
-        $eloquent->save();
-
-        return new User($eloquent->username, new PhoneNumber($eloquent->phone), $eloquent->id);
-    }
 
     public function save(User $user): User
     {
@@ -28,4 +19,5 @@ class UserStorage implements UserStorageInterface
 
         return new User($eloquent->username, new PhoneNumber($eloquent->phone), $eloquent->id);
     }
+
 }

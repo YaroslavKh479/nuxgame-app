@@ -4,7 +4,9 @@ namespace App\Infrastructure\Providers;
 
 
 use App\Domain\User\Contracts\Storage\UserStorageInterface;
+use App\Domain\UserToken\Contracts\Storage\UserTokenStorageInterface;
 use App\Infrastructure\Storage\UserStorage;
+use App\Infrastructure\Storage\UserTokenStorage;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -15,6 +17,7 @@ class AppServiceProvider extends ServiceProvider
     public function register(): void
     {
         $this->app->bind(UserStorageInterface::class, UserStorage::class);
+        $this->app->bind(UserTokenStorageInterface::class, UserTokenStorage::class);
     }
 
     /**
