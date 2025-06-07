@@ -7,6 +7,13 @@ use Illuminate\Foundation\Http\FormRequest;
 class CreateTokenRequest extends FormRequest
 {
 
+    public function prepareForValidation(): void
+    {
+        $this->merge([
+            'token' => $this->route('token'),
+        ]);
+    }
+
 
     public function rules(): array
     {

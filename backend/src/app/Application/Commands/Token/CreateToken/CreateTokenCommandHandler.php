@@ -4,22 +4,18 @@ namespace App\Application\Commands\Token\CreateToken;
 
 use App\Application\Responses\ErrorResponse;
 use App\Application\Responses\SuccessResponse;
-use App\Domain\User\Entities\User;
-use App\Domain\User\ValueObjects\PhoneNumber;
-use App\Domain\UserToken\Contracts\Repositories\UserTokenRepositoryInterface;
+use App\Application\Services\TokenService;
 use App\Domain\UserToken\Contracts\Storages\UserTokenStorageInterface;
 use App\Domain\UserToken\Entities\UserToken;
 use App\Domain\UserToken\ValueObjects\Token;
 use Carbon\Carbon;
-use Illuminate\Support\Facades\DB;
 use LaravelMediator\Abstracts\Buses\Handlers\CommandHandler;
-use Symfony\Component\HttpFoundation\Response;
 
 class CreateTokenCommandHandler extends CommandHandler
 {
 
     public function __construct(
-        private readonly UserTokenRepositoryInterface $userTokenRepository,
+        private readonly TokenService $tokenService,
         private readonly UserTokenStorageInterface $userTokenStorage
     )
     {
@@ -28,11 +24,7 @@ class CreateTokenCommandHandler extends CommandHandler
     public function handle(CreateTokenCommand $command): SuccessResponse | ErrorResponse
     {
 
-        $userToken = $this->userTokenRepository->getByToken($command->getToken());
-
-        if (!$userToken || $userToken->isExpired()) {
-            throw new \DomainException( __('Token is invalid or expired.'));
-        }
+        $userToken = $this->tokenService->getValidTokenOrFail($command->getToken());
 
         $userToken = $this->userTokenStorage->save(new UserToken(
             $userToken->user,
