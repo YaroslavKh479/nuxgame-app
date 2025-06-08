@@ -8,7 +8,7 @@ use App\Domain\GameHistory\Enums\GameResult;
 final class GameService
 {
 
-    public function playFeelingLucky(): FeelingLuckyResultDto
+    public function play(): FeelingLuckyResultDto
     {
 
         $generatedNumber = rand(1, 1000);

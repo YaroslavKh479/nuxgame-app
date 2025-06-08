@@ -5,14 +5,16 @@ namespace App\Infrastructure\Providers;
 
 
 use App\Application\Contracts\ClockInterface;
+use App\Domain\GameHistory\Contracts\Repositories\GameHistoryRepositoryInterface;
 use App\Domain\GameHistory\Contracts\Storages\GameHistoryStorageInterface;
 use App\Domain\User\Contracts\Repositories\UserRepositoryInterface;
 use App\Domain\User\Contracts\Storages\UserStorageInterface;
 use App\Domain\UserToken\Contracts\Repositories\UserTokenRepositoryInterface;
 use App\Domain\UserToken\Contracts\Storages\UserTokenStorageInterface;
 use App\Infrastructure\Clock\SystemClock;
+use App\Infrastructure\Repositories\GameHistory\GameHistoryRepository;
 use App\Infrastructure\Repositories\User\UserRepository;
-use app\Infrastructure\Repositories\User\UserTokenRepository;
+use App\Infrastructure\Repositories\User\UserTokenRepository;
 use App\Infrastructure\Storages\GameHistory\GameHistoryStorageStorage;
 use App\Infrastructure\Storages\User\UserStorage;
 use App\Infrastructure\Storages\User\UserTokenStorage;
@@ -28,6 +30,7 @@ class AppServiceProvider extends ServiceProvider
         // Repositories
         $this->app->bind(UserRepositoryInterface::class, UserRepository::class);
         $this->app->bind(UserTokenRepositoryInterface::class, UserTokenRepository::class);
+        $this->app->bind(GameHistoryRepositoryInterface::class, GameHistoryRepository::class);
 
         // Storages
         $this->app->bind(UserStorageInterface::class, UserStorage::class);

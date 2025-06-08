@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Application\Commands\Game\PlayGame;
+namespace App\Application\Queries\History;
 
 use LaravelMediator\Abstracts\Buses\Command;
 
-class PlayGameCommand extends Command
+class HistoryCommand extends Command
 {
 
     public function __construct(

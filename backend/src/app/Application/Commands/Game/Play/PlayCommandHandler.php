@@ -1,15 +1,17 @@
 <?php
 
-namespace App\Application\Commands\Game\PlayGame;
+namespace App\Application\Commands\Game\Play;
 
-use app\Application\Responses\Success;
+use App\Application\Responses\Success;
 use App\Application\Services\GameService;
 use App\Application\Services\TokenService;
 use App\Domain\GameHistory\Contracts\Storages\GameHistoryStorageInterface;
 use App\Domain\GameHistory\Entities\GameHistory;
+use App\Infrastructure\Cache\CacheKey;
+use Illuminate\Support\Facades\Cache;
 use LaravelMediator\Abstracts\Buses\Handlers\CommandHandler;
 
-class PlayGameCommandHandler extends CommandHandler
+class PlayCommandHandler extends CommandHandler
 {
 
     public function __construct(
@@ -20,12 +22,12 @@ class PlayGameCommandHandler extends CommandHandler
     {
     }
 
-    public function handle(PlayGameCommand $command): Success
+    public function handle(PlayCommand $command): Success
     {
 
         $userToken = $this->tokenService->getValidTokenOrFail($command->getToken());
 
-        $gameResult = $this->gameService->playFeelingLucky();
+        $gameResult = $this->gameService->play();
 
         $newGameHistory = $this->gameHistoryStorage->save(new GameHistory(
             user_token:         $userToken,
@@ -33,6 +35,8 @@ class PlayGameCommandHandler extends CommandHandler
             result:             $gameResult->result,
             prize:              $gameResult->prize,
         ));
+
+        Cache::forget(CacheKey::TOKEN_GAME_HISTORY->makeKey($userToken->getToken()));
 
         return new Success([
             'number'    => $newGameHistory->getGeneratedNumber(),
