@@ -25,7 +25,7 @@ class RegistrationCommandHandler extends CommandHandler
     {
     }
 
-    public function handle(RegistrationCommand $command): Success | \DomainException
+    public function handle(RegistrationCommand $command): Success
     {
 
         if ($this->userRepository->existsByPhone($command->getPhoneNumber())) {

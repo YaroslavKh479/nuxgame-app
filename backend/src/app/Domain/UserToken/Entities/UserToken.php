@@ -16,12 +16,32 @@ use Carbon\Carbon;
 final class UserToken
 {
     public function __construct(
-        public User $user,
-        public Token $token,
-        public Carbon $expiresAt,
-        public ?int $id = null,
+        private readonly User $user,
+        private readonly Token $token,
+        private readonly Carbon $expiresAt,
+        private readonly ?int $id = null,
     )
     {
+    }
+
+    public function getUser(): User
+    {
+        return $this->user;
+    }
+
+    public function getToken(): Token
+    {
+        return $this->token;
+    }
+
+    public function getExpiresAt(): Carbon
+    {
+        return $this->expiresAt;
+    }
+
+    public function getId(): ?int
+    {
+        return $this->id;
     }
 
 
