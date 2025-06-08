@@ -1,6 +1,6 @@
 <?php
 
-namespace app\Http\Controllers\Auth;
+namespace App\Http\Controllers\Auth;
 
 use App\Application\Commands\Registration\RegistrationCommand;
 use App\Http\Controllers\Controller;

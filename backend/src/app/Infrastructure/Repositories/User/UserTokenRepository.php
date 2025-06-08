@@ -1,6 +1,6 @@
 <?php
 
-namespace app\Infrastructure\Repositories\User;
+namespace App\Infrastructure\Repositories\User;
 
 
 use App\Domain\UserToken\Entities\UserToken;
