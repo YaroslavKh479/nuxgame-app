@@ -29,18 +29,23 @@ x-backend-variables: &backend-variables
   X_DB_USERNAME: "root"
   X_DB_PASSWORD: "root"
 
+  X_SESSION_DRIVER: "database"
+  X_SESSION_LIFETIME: "120"
+  X_SESSION_ENCRYPT: "false"
+  X_SESSION_PATH: ""
+  X_SESSION_DOMAIN: "null"
+
   X_FILESYSTEM_DISK: "public"
   X_QUEUE_CONNECTION: "database"
 
   X_PHONE_NUMBER_CODE: "+380"
   X_PHONE_NUMBER_LENGTH: "9"
   X_TOKEN_EXPIRES_DAYS: "7"
-  X_FEELING_LUCKY_NUMBER_RANGE : "1,1000"
 
 services:
 
   app:
-    container_name: nuxgame_api_app
+    container_name: nuxgame_app
     depends_on:
       - db
     links:
@@ -55,9 +60,10 @@ services:
       - ./src:/var/www
     ports:
       - '8801:80'
+      - '5173:5173'
 
   db:
-    container_name: nuxgame_api_db
+    container_name: nuxgame_db
     image: mariadb:10.6
     restart: unless-stopped
     environment:
@@ -71,7 +77,7 @@ services:
       - "3806:3306"
 
   adminer:
-    container_name: nuxgame_api_adminer
+    container_name: nuxgame_adminer
     image: adminer
     restart: unless-stopped
     ports:

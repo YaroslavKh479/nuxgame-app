@@ -13,6 +13,11 @@ RUN apt-get update \
         curl \
         supervisor \
         default-mysql-client \
+        ca-certificates \
+        gnupg \
+        lsb-release \
+    && curl -fsSL https://deb.nodesource.com/setup_20.x | bash - \
+    && apt-get install -y nodejs \
     && a2enmod ssl \
     && a2enmod rewrite \
     && docker-php-ext-install \

@@ -39,9 +39,9 @@ class PlayCommandHandler extends CommandHandler
         Cache::forget(CacheKey::TOKEN_GAME_HISTORY->makeKey($userToken->getToken()));
 
         return new Success([
-            'number'    => $newGameHistory->getGeneratedNumber(),
-            'result'    => $newGameHistory->getResult(),
-            'prize'     => $newGameHistory->getPrize(),
+            'generated_number'      => $newGameHistory->getGeneratedNumber(),
+            'result'                => $newGameHistory->getResult(),
+            'prize'                 => $newGameHistory->getPrize(),
         ]);
     }
 
