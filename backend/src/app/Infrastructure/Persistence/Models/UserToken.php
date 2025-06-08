@@ -12,6 +12,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property int $id
  * @property int $user_id
  * @property string $token
+ * @property bool $is_active
  * @property Carbon $expires_at
  * @property Carbon $created_at
  * @property Carbon $updated_at
@@ -25,6 +26,7 @@ class UserToken extends Model
         'user_id',
         'token',
         'expires_at',
+        'is_active'
     ];
 
 

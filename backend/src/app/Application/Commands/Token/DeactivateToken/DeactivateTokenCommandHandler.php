@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Application\Commands\Token\DeleteToken;
+namespace App\Application\Commands\Token\DeactivateToken;
 
 use App\Application\Responses\Success;
 use App\Application\Services\TokenService;
 use App\Domain\UserToken\Contracts\Storages\UserTokenStorageInterface;
 use LaravelMediator\Abstracts\Buses\Handlers\CommandHandler;
 
-class DeleteTokenCommandHandler extends CommandHandler
+class DeactivateTokenCommandHandler extends CommandHandler
 {
 
     public function __construct(
@@ -17,10 +17,10 @@ class DeleteTokenCommandHandler extends CommandHandler
     {
     }
 
-    public function handle(DeleteTokenCommand $command): Success
+    public function handle(DeactivateTokenCommand $command): Success
     {
         $userToken = $this->tokenService->getValidTokenOrFail($command->getToken());
-        $this->userTokenStorage->delete($userToken->getId());
+        $this->userTokenStorage->deactivate($userToken);
         return new Success(true);
     }
 }

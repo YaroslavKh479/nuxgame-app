@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Application\Commands\Token\DeleteToken;
+namespace App\Application\Commands\Token\DeactivateToken;
 
 use LaravelMediator\Abstracts\Buses\Command;
 
-class DeleteTokenCommand extends Command
+class DeactivateTokenCommand extends Command
 {
 
     public function __construct(

@@ -16,6 +16,7 @@ final class UserTokenMapper
             UserMapper::fromEloquent($eloquentUserToken->user),
             new Token($eloquentUserToken->token),
             Carbon::parse($eloquentUserToken->expires_at),
+            $eloquentUserToken->is_active,
             $eloquentUserToken->id
         );
     }

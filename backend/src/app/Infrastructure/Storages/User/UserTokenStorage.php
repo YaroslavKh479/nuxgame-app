@@ -19,13 +19,18 @@ class UserTokenStorage implements UserTokenStorageInterface
         $eloquent->user_id = $userToken->getUser()->getId();
         $eloquent->token = $userToken->getToken()->getValue();
         $eloquent->expires_at = $userToken->getExpiresAt();
+        $eloquent->is_active = $userToken->isIsActive();
         $eloquent->save();
 
         return UserTokenMapper::fromEloquent($eloquent);
     }
 
-    public function delete(int $id): bool
+    public function deactivate(UserToken $userToken): UserToken
     {
-        return EloquentUserToken::where('id',$id)->delete();
+        $eloquent = EloquentUserToken::find($userToken->getId());
+        $eloquent->is_active = false;
+        $eloquent->save();
+
+        return UserTokenMapper::fromEloquent($eloquent);
     }
 }

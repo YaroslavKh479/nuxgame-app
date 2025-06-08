@@ -10,6 +10,6 @@ interface UserTokenStorageInterface
 
     public function save(UserToken $userToken): UserToken;
 
-    public function delete(int $id): bool;
+    public function deactivate(UserToken $userToken): UserToken;
 
 }

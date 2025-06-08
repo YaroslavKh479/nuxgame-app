@@ -5,6 +5,6 @@ use Illuminate\Support\Facades\Route;
 
 Route::prefix('/token/{token}')->group(function () {
     Route::post('', [TokenController::class, 'create']);
-    Route::delete('', [TokenController::class, 'delete']);
+    Route::patch('', [TokenController::class, 'deactivate']);
 });
 

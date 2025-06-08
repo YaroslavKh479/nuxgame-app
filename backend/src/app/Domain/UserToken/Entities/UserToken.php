@@ -7,13 +7,14 @@ use App\Domain\UserToken\ValueObjects\Token;
 use Carbon\Carbon;
 
 
-final class UserToken
+final readonly class UserToken
 {
     public function __construct(
-        private readonly User $user,
-        private readonly Token $token,
-        private readonly Carbon $expiresAt,
-        private readonly ?int $id = null,
+        private User   $user,
+        private Token  $token,
+        private Carbon $expiresAt,
+        private bool   $is_active = true,
+        private ?int   $id = null,
     )
     {
     }
@@ -33,11 +34,15 @@ final class UserToken
         return $this->expiresAt;
     }
 
+    public function isIsActive(): bool
+    {
+        return $this->is_active;
+    }
+
     public function getId(): ?int
     {
         return $this->id;
     }
-
 
     public function isExpired(): bool
     {

@@ -5,12 +5,12 @@ namespace App\Domain\User\Entities;
 use App\Domain\User\ValueObjects\PhoneNumber;
 
 
-final class User
+final readonly class User
 {
     public function __construct(
-        private readonly string $name,
-        private readonly PhoneNumber $phoneNumber,
-        private readonly ?int $id = null,
+        private string      $name,
+        private PhoneNumber $phoneNumber,
+        private ?int        $id = null,
     )
     {
     }

@@ -15,7 +15,7 @@ class TokenService
     {
         $userToken = $this->userTokenRepository->getByToken($token);
 
-        if (!$userToken || $userToken->isExpired()) {
+        if (!$userToken || $userToken->isExpired() || !$userToken->isIsActive()) {
             throw new \DomainException(__('Token is invalid or expired.'));
         }
 
