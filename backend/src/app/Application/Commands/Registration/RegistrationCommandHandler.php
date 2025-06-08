@@ -44,6 +44,7 @@ class RegistrationCommandHandler extends CommandHandler
                 Token::generate(),
                 Carbon::now()->addDays((int)config('custom.token_expires_days'))
             ));
+
         });
 
         return new Success($userToken->getToken()->getValue());

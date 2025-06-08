@@ -22,7 +22,6 @@ class CreateTokenCommandHandler extends CommandHandler
 
     public function handle(CreateTokenCommand $command): Success
     {
-
         $userToken = $this->tokenService->getValidTokenOrFail($command->getToken());
 
         $userToken = $this->userTokenStorage->save(new UserToken(
