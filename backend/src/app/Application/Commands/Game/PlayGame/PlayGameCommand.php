@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Application\Commands\Game\FeelingLucky;
+namespace App\Application\Commands\Game\PlayGame;
 
 use LaravelMediator\Abstracts\Buses\Command;
 
-class FeelingLuckyCommand extends Command
+class PlayGameCommand extends Command
 {
 
     public function __construct(

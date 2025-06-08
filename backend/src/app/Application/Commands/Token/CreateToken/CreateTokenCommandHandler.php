@@ -26,12 +26,12 @@ class CreateTokenCommandHandler extends CommandHandler
     {
         $userToken = $this->tokenService->getValidTokenOrFail($command->getToken());
 
-        $userToken = $this->userTokenStorage->save(new UserToken(
+        $newUserToken = $this->userTokenStorage->save(new UserToken(
             $userToken->getUser(),
             Token::generate(),
             $this->clock->now()->addDays((int)config('custom.token_expires_days'))
         ));
 
-        return new Success($userToken->getToken()->getValue());
+        return new Success($newUserToken->getToken()->getValue());
     }
 }

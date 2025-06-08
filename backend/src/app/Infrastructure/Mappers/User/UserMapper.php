@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Infrastructure\Mappers\UserMapper;
+namespace App\Infrastructure\Mappers\User;
 
 use App\Domain\User\Entities\User as DomainUser;
 use App\Domain\User\ValueObjects\PhoneNumber;

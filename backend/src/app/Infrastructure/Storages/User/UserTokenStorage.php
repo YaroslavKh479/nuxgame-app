@@ -7,7 +7,7 @@ use App\Domain\UserToken\Contracts\Storages\UserTokenStorageInterface;
 
 use App\Domain\UserToken\Entities\UserToken;
 use App\Domain\UserToken\ValueObjects\Token;
-use App\Infrastructure\Mappers\UserTokenMapper\UserTokenMapper;
+use App\Infrastructure\Mappers\UserToken\UserTokenMapper;
 use App\Infrastructure\Persistence\Models\UserToken as EloquentUserToken;
 
 class UserTokenStorage implements UserTokenStorageInterface

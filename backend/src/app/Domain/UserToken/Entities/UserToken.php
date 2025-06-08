@@ -6,12 +6,6 @@ use App\Domain\User\Entities\User;
 use App\Domain\UserToken\ValueObjects\Token;
 use Carbon\Carbon;
 
-/**
- * @property User $user
- * @property Token $token
- * @property Carbon $expiresAt
- * @property ?int $id
- */
 
 final class UserToken
 {

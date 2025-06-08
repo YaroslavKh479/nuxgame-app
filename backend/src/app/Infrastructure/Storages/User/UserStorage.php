@@ -5,8 +5,7 @@ namespace App\Infrastructure\Storages\User;
 
 use App\Domain\User\Contracts\Storages\UserStorageInterface;
 use App\Domain\User\Entities\User;
-use App\Domain\User\ValueObjects\PhoneNumber;
-use App\Infrastructure\Mappers\UserMapper\UserMapper;
+use App\Infrastructure\Mappers\User\UserMapper;
 use App\Infrastructure\Persistence\Models\User as EloquentUser;
 
 class UserStorage implements UserStorageInterface
