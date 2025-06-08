@@ -2,6 +2,7 @@
 
 namespace App\Application\Commands\Token\CreateToken;
 
+use App\Application\Contracts\ClockInterface;
 use App\Application\Responses\Success;
 use App\Application\Services\TokenService;
 use App\Domain\UserToken\Contracts\Storages\UserTokenStorageInterface;
@@ -14,6 +15,7 @@ class CreateTokenCommandHandler extends CommandHandler
 {
 
     public function __construct(
+        private readonly ClockInterface $clock,
         private readonly TokenService $tokenService,
         private readonly UserTokenStorageInterface $userTokenStorage
     )
@@ -27,7 +29,7 @@ class CreateTokenCommandHandler extends CommandHandler
         $userToken = $this->userTokenStorage->save(new UserToken(
             $userToken->getUser(),
             Token::generate(),
-            Carbon::now()->addDays((int)config('custom.token_expires_days'))
+            $this->clock->now()->addDays((int)config('custom.token_expires_days'))
         ));
 
         return new Success($userToken->getToken()->getValue());
