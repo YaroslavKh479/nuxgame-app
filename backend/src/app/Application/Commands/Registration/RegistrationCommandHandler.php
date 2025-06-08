@@ -46,6 +46,6 @@ class RegistrationCommandHandler extends CommandHandler
             ));
         });
 
-        return new Success($userToken->token->getValue());
+        return new Success($userToken->getToken()->getValue());
     }
 }

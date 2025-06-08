@@ -15,7 +15,7 @@ class UserTokenStorage implements UserTokenStorageInterface
 
     public function save(UserToken $userToken): UserToken
     {
-        $eloquent = EloquentUserToken::find($userToken->id) ?? new EloquentUserToken();
+        $eloquent = EloquentUserToken::find($userToken->getId()) ?? new EloquentUserToken();
         $eloquent->user_id = $userToken->getUser()->getId();
         $eloquent->token = $userToken->getToken()->getValue();
         $eloquent->expires_at = $userToken->getExpiresAt();

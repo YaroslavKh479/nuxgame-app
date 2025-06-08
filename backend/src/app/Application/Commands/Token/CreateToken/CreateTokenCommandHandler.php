@@ -20,17 +20,17 @@ class CreateTokenCommandHandler extends CommandHandler
     {
     }
 
-    public function handle(CreateTokenCommand $command): Success | \DomainException
+    public function handle(CreateTokenCommand $command): Success
     {
 
         $userToken = $this->tokenService->getValidTokenOrFail($command->getToken());
 
         $userToken = $this->userTokenStorage->save(new UserToken(
-            $userToken->user,
+            $userToken->getUser(),
             Token::generate(),
             Carbon::now()->addDays((int)config('custom.token_expires_days'))
         ));
 
-        return new Success($userToken->token->getValue());
+        return new Success($userToken->getToken()->getValue());
     }
 }

@@ -17,12 +17,12 @@ class DeleteTokenCommandHandler extends CommandHandler
     {
     }
 
-    public function handle(DeleteTokenCommand $command): Success | \DomainException
+    public function handle(DeleteTokenCommand $command): Success
     {
 
         $userToken = $this->tokenService->getValidTokenOrFail($command->getToken());
 
-        $this->userTokenStorage->delete($userToken->id);
+        $this->userTokenStorage->delete($userToken->getId());
 
         return new Success(true);
     }
