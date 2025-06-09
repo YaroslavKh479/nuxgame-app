@@ -24,6 +24,8 @@ pushd /var/www/
   RUN "php artisan key:generate --force"
 
   RUN "php artisan migrate && php artisan optimize:clear"
+  
+  RUN "npm install"
 
   RUN "npm run build"
 
