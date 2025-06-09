@@ -25,3 +25,4 @@ yarn-error.log
 /src/.local/
 /src/.composer/
 /src/supervisord.pid
+/src/.npm/_update-notifier-last-checked
