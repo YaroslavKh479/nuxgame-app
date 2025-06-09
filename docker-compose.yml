@@ -29,7 +29,7 @@ x-backend-variables: &backend-variables
   X_DB_USERNAME: "root"
   X_DB_PASSWORD: "root"
 
-  X_SESSION_DRIVER: "database"
+  X_SESSION_DRIVER: "file"
   X_SESSION_LIFETIME: "120"
   X_SESSION_ENCRYPT: "false"
   X_SESSION_PATH: ""

@@ -36,13 +36,13 @@ RUN apt-get update \
 COPY ./src/ /var/www
 
 # Copy Apache config
-COPY apache_host.conf /etc/apache2/sites-available/000-default.conf
+COPY conf/apache_host.conf /etc/apache2/sites-available/000-default.conf
 
 # Copy Supervisor config
-COPY ./supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+COPY conf/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 # Entrypoint
-COPY ./entrypoint.sh /
+COPY sh/entrypoint.sh /
 RUN chmod +x /entrypoint.sh
 ENTRYPOINT [ "/entrypoint.sh" ]
 
