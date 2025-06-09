@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Domain\GameHistory\Contracts\Storages;
+namespace App\Domain\GameHistory\Contracts;
 
 use App\Domain\GameHistory\Entities\GameHistory;
 

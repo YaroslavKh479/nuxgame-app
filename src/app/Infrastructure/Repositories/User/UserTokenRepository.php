@@ -3,8 +3,8 @@
 namespace App\Infrastructure\Repositories\User;
 
 
+use App\Domain\UserToken\Contracts\UserTokenRepositoryInterface;
 use App\Domain\UserToken\Entities\UserToken;
-use App\Domain\UserToken\Contracts\Repositories\UserTokenRepositoryInterface;
 use App\Infrastructure\Mappers\UserToken\UserTokenMapper;
 use App\Infrastructure\Persistence\Models\UserToken as EloquentUserToken;
 

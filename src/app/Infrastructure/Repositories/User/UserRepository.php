@@ -3,9 +3,8 @@
 namespace App\Infrastructure\Repositories\User;
 
 
-use App\Domain\User\Contracts\Repositories\UserRepositoryInterface;
+use App\Domain\User\Contracts\UserRepositoryInterface;
 use App\Domain\User\Entities\User;
-use App\Domain\User\ValueObjects\PhoneNumber;
 use app\Infrastructure\Mappers\User\UserMapper;
 use App\Infrastructure\Persistence\Models\User as EloquentUser;
 

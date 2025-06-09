@@ -2,9 +2,10 @@
 
 namespace App\Infrastructure\Repositories\GameHistory;
 
-use App\Domain\GameHistory\Contracts\Repositories\GameHistoryRepositoryInterface;
-use Illuminate\Support\Collection;
+use App\Domain\GameHistory\Contracts\GameHistoryRepositoryInterface;
 use App\Infrastructure\Persistence\Models\GameHistory as EloquentGameHistory;
+use Illuminate\Support\Collection;
+
 class GameHistoryRepository implements GameHistoryRepositoryInterface
 {
 

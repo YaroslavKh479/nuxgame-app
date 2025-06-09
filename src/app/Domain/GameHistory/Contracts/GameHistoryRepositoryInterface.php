@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Domain\GameHistory\Contracts\Repositories;
+namespace App\Domain\GameHistory\Contracts;
 
 use Illuminate\Support\Collection;
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Domain\UserToken\Contracts\Repositories;
+namespace App\Domain\UserToken\Contracts;
 
 
 use App\Domain\UserToken\Entities\UserToken;

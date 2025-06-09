@@ -3,10 +3,8 @@
 namespace App\Infrastructure\Storages\User;
 
 
-use App\Domain\UserToken\Contracts\Storages\UserTokenStorageInterface;
-
+use App\Domain\UserToken\Contracts\UserTokenStorageInterface;
 use App\Domain\UserToken\Entities\UserToken;
-use App\Domain\UserToken\ValueObjects\Token;
 use App\Infrastructure\Mappers\UserToken\UserTokenMapper;
 use App\Infrastructure\Persistence\Models\UserToken as EloquentUserToken;
 

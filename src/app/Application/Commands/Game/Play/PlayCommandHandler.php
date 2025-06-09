@@ -5,9 +5,9 @@ namespace App\Application\Commands\Game\Play;
 use App\Application\Responses\Success;
 use App\Application\Services\GameService;
 use App\Application\Services\TokenService;
-use App\Domain\GameHistory\Contracts\Storages\GameHistoryStorageInterface;
+use App\Domain\GameHistory\Contracts\GameHistoryStorageInterface;
 use App\Domain\GameHistory\Entities\GameHistory;
-use App\Infrastructure\Cache\CacheKey;
+use App\Infrastructure\Common\Cache\CacheKey;
 use Illuminate\Support\Facades\Cache;
 use LaravelMediator\Abstracts\Buses\Handlers\CommandHandler;
 

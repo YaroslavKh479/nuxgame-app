@@ -4,11 +4,11 @@ namespace App\Application\Commands\Registration;
 
 use App\Application\Contracts\ClockInterface;
 use App\Application\Responses\Success;
-use App\Domain\User\Contracts\Repositories\UserRepositoryInterface;
-use App\Domain\User\Contracts\Storages\UserStorageInterface;
+use App\Domain\User\Contracts\UserRepositoryInterface;
+use App\Domain\User\Contracts\UserStorageInterface;
 use App\Domain\User\Entities\User;
 use App\Domain\User\ValueObjects\PhoneNumber;
-use App\Domain\UserToken\Contracts\Storages\UserTokenStorageInterface;
+use App\Domain\UserToken\Contracts\UserTokenStorageInterface;
 use App\Domain\UserToken\Entities\UserToken;
 use App\Domain\UserToken\ValueObjects\Token;
 use Illuminate\Support\Facades\DB;

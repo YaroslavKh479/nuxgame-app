@@ -2,7 +2,7 @@
 
 namespace App\Application\Services;
 
-use App\Domain\UserToken\Contracts\Repositories\UserTokenRepositoryInterface;
+use App\Domain\UserToken\Contracts\UserTokenRepositoryInterface;
 use App\Domain\UserToken\Entities\UserToken;
 
 class TokenService

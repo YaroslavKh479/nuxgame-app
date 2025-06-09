@@ -5,13 +5,13 @@ namespace App\Infrastructure\Providers;
 
 
 use App\Application\Contracts\ClockInterface;
-use App\Domain\GameHistory\Contracts\Repositories\GameHistoryRepositoryInterface;
-use App\Domain\GameHistory\Contracts\Storages\GameHistoryStorageInterface;
-use App\Domain\User\Contracts\Repositories\UserRepositoryInterface;
-use App\Domain\User\Contracts\Storages\UserStorageInterface;
-use App\Domain\UserToken\Contracts\Repositories\UserTokenRepositoryInterface;
-use App\Domain\UserToken\Contracts\Storages\UserTokenStorageInterface;
-use App\Infrastructure\Clock\SystemClock;
+use App\Domain\GameHistory\Contracts\GameHistoryRepositoryInterface;
+use App\Domain\GameHistory\Contracts\GameHistoryStorageInterface;
+use App\Domain\User\Contracts\UserRepositoryInterface;
+use App\Domain\User\Contracts\UserStorageInterface;
+use App\Domain\UserToken\Contracts\UserTokenRepositoryInterface;
+use App\Domain\UserToken\Contracts\UserTokenStorageInterface;
+use App\Infrastructure\Common\Clock\SystemClock;
 use App\Infrastructure\Repositories\GameHistory\GameHistoryRepository;
 use App\Infrastructure\Repositories\User\UserRepository;
 use App\Infrastructure\Repositories\User\UserTokenRepository;

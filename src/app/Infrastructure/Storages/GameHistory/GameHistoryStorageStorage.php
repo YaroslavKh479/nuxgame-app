@@ -2,7 +2,7 @@
 
 namespace App\Infrastructure\Storages\GameHistory;
 
-use App\Domain\GameHistory\Contracts\Storages\GameHistoryStorageInterface;
+use App\Domain\GameHistory\Contracts\GameHistoryStorageInterface;
 use App\Domain\GameHistory\Entities\GameHistory;
 use App\Infrastructure\Mappers\GameHistory\GameHistoryMapper;
 use App\Infrastructure\Persistence\Models\GameHistory as EloquentGameHistory;

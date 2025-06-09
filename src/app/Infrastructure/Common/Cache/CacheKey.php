@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Infrastructure\Cache;
+namespace App\Infrastructure\Common\Cache;
 
 enum CacheKey : string
 {

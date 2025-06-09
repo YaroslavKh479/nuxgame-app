@@ -25,6 +25,8 @@ pushd /var/www/
 
   RUN "php artisan migrate && php artisan optimize:clear"
 
+  RUN "npm run build"
+
 
 popd
 

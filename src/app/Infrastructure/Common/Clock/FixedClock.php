@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Infrastructure\Clock;
+namespace App\Infrastructure\Common\Clock;
 
 use App\Application\Contracts\ClockInterface;
 use Carbon\Carbon;

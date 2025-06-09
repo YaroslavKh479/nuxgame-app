@@ -4,7 +4,7 @@ namespace App\Application\Commands\Token\DeactivateToken;
 
 use App\Application\Responses\Success;
 use App\Application\Services\TokenService;
-use App\Domain\UserToken\Contracts\Storages\UserTokenStorageInterface;
+use App\Domain\UserToken\Contracts\UserTokenStorageInterface;
 use LaravelMediator\Abstracts\Buses\Handlers\CommandHandler;
 
 class DeactivateTokenCommandHandler extends CommandHandler
