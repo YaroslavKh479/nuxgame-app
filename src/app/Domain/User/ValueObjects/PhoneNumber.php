@@ -2,18 +2,16 @@
 
 namespace App\Domain\User\ValueObjects;
 
-use Illuminate\Support\Str;
-
 final class PhoneNumber
 {
     private string $digits;
 
     public function __construct(string $raw)
     {
-        $digits = Str::replaceMatches('/\D/', '', $raw);
+        $digits = preg_replace('/\D/', '', $raw);
 
-        if (Str::length($digits) < 7 || Str::length($digits) > 15) {
-            throw new \InvalidArgumentException('Invalid phone number');
+        if ($digits === null || strlen($digits) < 7 || strlen($digits) > 15) {
+            throw new \InvalidArgumentException('Invalid phone number.');
         }
 
         $this->digits = $digits;
@@ -26,7 +24,9 @@ final class PhoneNumber
 
     public function international(): string
     {
-        return Str::start($this->digits, '+');
+        return str_starts_with($this->digits, '+')
+            ? $this->digits
+            : '+' . $this->digits;
     }
 
     public function __toString(): string
@@ -34,8 +34,8 @@ final class PhoneNumber
         return $this->digits;
     }
 
-    public function equals(PhoneNumber $other): bool
+    public function equals(self $other): bool
     {
-        return Str::is($this->digits, $other->value());
+        return $this->digits === $other->value();
     }
 }

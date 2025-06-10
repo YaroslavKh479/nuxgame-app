@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Domain\UserToken\ValueObjects;
-use Illuminate\Support\Str;
+use Random\RandomException;
 
 final class Token
 {
@@ -15,9 +15,12 @@ final class Token
         $this->value = $value;
     }
 
+    /**
+     * @throws RandomException
+     */
     public static function generate(): self
     {
-        return new self(Str::random(64));
+        return new self(bin2hex(random_bytes(32)));
     }
 
     public function getValue(): string
@@ -25,9 +28,9 @@ final class Token
         return $this->value;
     }
 
-    public function equals(Token $other): bool
+    public function equals(self $other): bool
     {
-        return $this->value === $other->value();
+        return hash_equals($this->value, $other->getValue());
     }
 
     public function __toString(): string

@@ -2,6 +2,7 @@
 
 namespace App\Domain\UserToken\Entities;
 
+use App\Application\Contracts\ClockInterface;
 use App\Domain\User\Entities\User;
 use App\Domain\UserToken\ValueObjects\Token;
 use Carbon\Carbon;
@@ -44,9 +45,9 @@ final readonly class UserToken
         return $this->id;
     }
 
-    public function isExpired(): bool
+    public function isExpired(ClockInterface $clock): bool
     {
-        return $this->expiresAt < Carbon::now();
+        return $this->expiresAt < $clock->now();
     }
 
 }
